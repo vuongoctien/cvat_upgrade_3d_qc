@@ -476,6 +476,18 @@ function HeaderComponent(props: Props): JSX.Element {
                 >
                     Models
                 </Button>
+                <Button
+                    className={getButtonClassName('cuboid_qc')}
+                    type='link'
+                    value='cuboid_qc'
+                    href='/cuboid_qc'
+                    onClick={(event: React.MouseEvent): void => {
+                        event.preventDefault();
+                        history.push('/cuboid_qc');
+                    }}
+                >
+                    3D Cuboid QC
+                </Button>
                 {isAnalyticsPluginActive && user.hasAnalyticsAccess ? (
                     <Button
                         className={getButtonClassName('analytics', false)}

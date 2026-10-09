@@ -1,0 +1,387 @@
+// Copyright (C) 2026 CVAT.ai Corporation
+//
+// SPDX-License-Identifier: MIT
+
+@import 'base';
+@import '../../styles';
+
+.cvat-cuboid-qc-page {
+    @include cvat-resource-page;
+    padding: $grid-unit-size * 3;
+    background: #f7f9fc;
+    min-height: calc(100vh - #{$header-height});
+
+    .cvat-cuboid-qc-header {
+        margin-bottom: $grid-unit-size * 3;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        .cvat-cuboid-qc-title {
+            margin-bottom: 4px;
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1f36;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            .qc-badge-pill {
+                font-size: 12px;
+                font-weight: 600;
+                padding: 2px 10px;
+                border-radius: 12px;
+                background: linear-gradient(135deg, #1890ff, #096dd9);
+                color: #ffffff;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+        }
+
+        .cvat-cuboid-qc-subtitle {
+            color: #697386;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .cvat-cuboid-qc-header-actions {
+            display: flex;
+            gap: $grid-unit-size;
+        }
+    }
+
+    // Upload & Configuration Section
+    .cvat-cuboid-qc-upload-card {
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        border: 1px solid #e3e8ee;
+        margin-bottom: $grid-unit-size * 3;
+        padding: $grid-unit-size * 3;
+        transition: all 0.3s ease;
+
+        .ant-upload.ant-upload-drag {
+            background: #fafbfc;
+            border: 2px dashed #d0d7de;
+            border-radius: 10px;
+            padding: $grid-unit-size * 3;
+            transition: border-color 0.3s, background-color 0.3s;
+
+            &:hover {
+                border-color: #1890ff;
+                background-color: #f0f7ff;
+            }
+
+            .ant-upload-drag-icon {
+                font-size: 48px;
+                color: #1890ff;
+                margin-bottom: 12px;
+            }
+
+            .ant-upload-text {
+                font-size: 16px;
+                font-weight: 600;
+                color: #24292f;
+            }
+
+            .ant-upload-hint {
+                color: #57606a;
+                font-size: 13px;
+            }
+        }
+
+        .qc-upload-demo-bar {
+            margin-top: $grid-unit-size * 2;
+            padding: $grid-unit-size * 1.5;
+            background: #f0f7ff;
+            border: 1px solid #bae0ff;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .demo-info {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                font-size: 13px;
+                color: #096dd9;
+            }
+        }
+
+        .qc-config-accordion {
+            margin-top: $grid-unit-size * 2;
+            border-radius: 8px;
+            border: 1px solid #edf2f7;
+            background: #fbfcfe;
+        }
+
+        .qc-submit-actions {
+            margin-top: $grid-unit-size * 2.5;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: $grid-unit-size * 1.5;
+        }
+    }
+
+    // Analysis Pipeline Progress
+    .cvat-cuboid-qc-progress-card {
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        border: 1px solid #b5f5ec;
+        margin-bottom: $grid-unit-size * 3;
+        padding: $grid-unit-size * 3;
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: $grid-unit-size * 2;
+
+            .progress-title {
+                font-size: 16px;
+                font-weight: 600;
+                color: #135200;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+        }
+
+        .qc-steps-wrapper {
+            margin-top: $grid-unit-size * 2;
+        }
+    }
+
+    // Summary Metric Cards
+    .cvat-cuboid-qc-metrics-grid {
+        margin-bottom: $grid-unit-size * 3;
+
+        .qc-stat-card {
+            background: #ffffff;
+            border-radius: 10px;
+            border: 1px solid #e3e8ee;
+            padding: $grid-unit-size * 2;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+
+            &:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+            }
+
+            &.active-filter {
+                border: 2px solid #1890ff;
+                background: #f8fbff;
+            }
+
+            &.few-lidar {
+                border-top: 4px solid #fa8c16;
+            }
+
+            &.irrational-size {
+                border-top: 4px solid #f5222d;
+            }
+
+            &.overlapping {
+                border-top: 4px solid #722ed1;
+            }
+
+            &.opposite-heading {
+                border-top: 4px solid #13c2c2;
+            }
+
+            .qc-stat-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 8px;
+
+                .qc-stat-label {
+                    font-size: 13px;
+                    font-weight: 600;
+                    color: #555b6e;
+                }
+
+                .qc-stat-icon {
+                    font-size: 18px;
+                }
+            }
+
+            .qc-stat-value {
+                font-size: 26px;
+                font-weight: 700;
+                color: #1a1f36;
+                line-height: 1.2;
+            }
+
+            .qc-stat-desc {
+                margin-top: 4px;
+                font-size: 12px;
+                color: #8792a2;
+            }
+        }
+    }
+
+    // Scenes Table Card
+    .cvat-cuboid-qc-table-card {
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        border: 1px solid #e3e8ee;
+        padding: $grid-unit-size * 2.5;
+
+        .qc-table-top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: $grid-unit-size * 2;
+            flex-wrap: wrap;
+            gap: 12px;
+
+            .qc-table-title {
+                font-size: 17px;
+                font-weight: 600;
+                color: #1a1f36;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .qc-table-filters {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                flex-wrap: wrap;
+            }
+        }
+
+        .ant-table-wrapper {
+            .ant-table-thead > tr > th {
+                background: #f8fafc;
+                font-weight: 600;
+                color: #475467;
+            }
+
+            .ant-table-tbody > tr:hover > td {
+                background: #f0f7ff;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+// Custom Tag Styles for 4 Error Types
+.qc-error-tag {
+    font-weight: 600;
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+
+    &.few-lidar {
+        background: #fff7e6;
+        border: 1px solid #ffd591;
+        color: #d46b08;
+    }
+
+    &.irrational-size {
+        background: #fff1f0;
+        border: 1px solid #ffa39e;
+        color: #cf1322;
+    }
+
+    &.overlapping {
+        background: #f9f0ff;
+        border: 1px solid #d3adf7;
+        color: #531dab;
+    }
+
+    &.opposite-heading {
+        background: #e6fffb;
+        border: 1px solid #87e8de;
+        color: #08979c;
+    }
+}
+
+// Scene Detail Modal
+.cvat-cuboid-qc-detail-modal {
+    .ant-modal-content {
+        border-radius: 14px;
+        overflow: hidden;
+    }
+
+    .modal-scene-header {
+        background: #f8fafc;
+        padding: 16px 20px;
+        border-bottom: 1px solid #e9ecef;
+        margin: -20px -24px 20px -24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .scene-meta-info {
+            .scene-title {
+                font-size: 18px;
+                font-weight: 700;
+                color: #1a1f36;
+                margin-bottom: 4px;
+            }
+
+            .scene-subtitle {
+                font-size: 13px;
+                color: #697386;
+                display: flex;
+                gap: 16px;
+            }
+        }
+
+        .cvat-open-job-btn {
+            background: #1890ff;
+            color: #ffffff;
+            font-weight: 600;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+
+            &:hover {
+                background: #40a9ff;
+            }
+        }
+    }
+
+    .modal-filter-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16px;
+    }
+
+    .cuboids-table {
+        .ant-table-thead > tr > th {
+            background: #f4f6f8;
+            font-weight: 600;
+        }
+
+        .cvat-cuboid-jump-link {
+            font-weight: 600;
+            color: #1890ff;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+
+            &:hover {
+                text-decoration: underline;
+                color: #096dd9;
+            }
+        }
+    }
+}
